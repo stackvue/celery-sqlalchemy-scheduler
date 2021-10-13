@@ -134,7 +134,7 @@ class ModelEntry(ScheduleEntry):
                 tzinfo=self.app.timezone)
             if now < start_time:
                 # The datetime is before the start date - don't run.
-                _, delay = self.schedule.is_due(self.last_run_at)
+                delay = max((start_time - now).total_seconds(), 0)
                 # use original delay for re-check
                 return schedules.schedstate(False, delay)
 
