@@ -2,6 +2,7 @@
 
 import logging
 import datetime as dt
+from calendar import timegm
 from multiprocessing.util import Finalize
 
 import sqlalchemy
@@ -444,6 +445,11 @@ class DatabaseScheduler(Scheduler):
                 )
         # logger.debug(self._schedule)
         return self._schedule
+
+    def _when(self, entry, next_time_to_run, mktime=timegm):
+        logger.debug('Start HeapPush')
+        super(DatabaseScheduler, self)._when(entry, next_time_to_run, mktime)
+        logger.debug('End HeapPush')
 
     @property
     def info(self):
