@@ -148,7 +148,7 @@ class ModelEntry(ScheduleEntry):
             self.save(save_fields)
 
             return schedules.schedstate(False, None)  # Don't recheck
-
+        logger.debug('CheckingDue: %s', self.name)
         return self.schedule.is_due(self.last_run_at)
 
     def _default_now(self):
