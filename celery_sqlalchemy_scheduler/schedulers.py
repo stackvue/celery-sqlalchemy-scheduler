@@ -448,9 +448,9 @@ class DatabaseScheduler(Scheduler):
 
     def _when(self, entry, next_time_to_run, mktime=timegm):
         logger.debug('Start HeapPush')
-        super(DatabaseScheduler, self)._when(entry, next_time_to_run, mktime)
+        result = super(DatabaseScheduler, self)._when(entry, next_time_to_run, mktime)
         logger.debug('End HeapPush')
-
+        return result
     @property
     def info(self):
         """override"""
