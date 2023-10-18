@@ -412,9 +412,11 @@ class DatabaseScheduler(Scheduler):
         self.update_from_dict(entries)
 
     def schedules_equal(self, *args, **kwargs):
+        logger.debug('DatabaseScheduler: checking Equals')
         if self._heap_invalidated:
             self._heap_invalidated = False
             return False
+        logger.debug('DatabaseScheduler: checking Equals from super')
         return super(DatabaseScheduler, self).schedules_equal(*args, **kwargs)
 
     @property
