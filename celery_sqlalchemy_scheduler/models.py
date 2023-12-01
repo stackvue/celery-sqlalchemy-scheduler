@@ -197,7 +197,7 @@ class PeriodicTaskChanged(ModelBase, ModelMixin):
         :param connection: the Connection being used
         :param target: the mapped instance being persisted
         """
-        s = connection.execute(select([PeriodicTaskChanged]).
+        s = connection.execute(select(PeriodicTaskChanged).
                                where(PeriodicTaskChanged.id == 1).limit(1))
         if not s:
             s = connection.execute(insert(PeriodicTaskChanged),
